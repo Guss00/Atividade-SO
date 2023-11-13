@@ -25,8 +25,8 @@ public class UsuarioDao {
             // Contando no banco do servidor
             Integer countServer = conServer.queryForObject(sql, Integer.class, email, senha);
 
-            // Somando os resultados
-            return countLocal + countServer;
+
+            return countServer;
 
         } catch (Exception e) {
             // Trate exceções (log, relatório de erro, etc.)
@@ -69,7 +69,7 @@ public class UsuarioDao {
             Usuario usuarioServer = conServer.queryForObject(sql, new BeanPropertyRowMapper<>(Usuario.class), email, senha);
 
             // Escolha qual usuário retornar (pode ser lógica de negócios específica)
-            return (usuarioLocal != null) ? usuarioLocal : usuarioServer;
+            return usuarioServer;
 
         } catch (Exception e) {
             // Trate exceções (log, relatório de erro, etc.)
